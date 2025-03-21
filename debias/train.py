@@ -11,7 +11,9 @@ from typing import Dict, List, Callable, Iterable, Tuple
 import logging
 import time
 import random
-from .. import util
+import sys, os
+sys.path.append(os.path.dirname((os.path.dirname(os.path.abspath(__file__)))))
+from beir import util
 
 logger = logging.getLogger(__name__)
 

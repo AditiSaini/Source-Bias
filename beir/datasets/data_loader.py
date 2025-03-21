@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 class GenericDataLoader:
     
-    def __init__(self, data_folder: str = None, prefix: str = None, corpus_file: str = "corpus.jsonl", query_file: str = "queries.jsonl", 
+    def __init__(self, data_folder: str = None, prefix: str = None, corpus_file: str = None, query_file: str = "queries.jsonl", 
                  qrels_folder: str = "qrels", qrels_file: str = "", candidate_lm: list = ['human'], target: str = 'human', temperature: list = [0.2]):
         self.corpus = {}
         self.queries = {}
@@ -22,10 +22,16 @@ class GenericDataLoader:
         self.corpus_files = []
         for source in candidate_lm:
             if source == "human":
+                print("in human")
                 self.corpus_files.append(os.path.join(data_folder, 'corpus-human.jsonl'))
             else:
+                print("not in human")
+                print('corpus-{}.jsonl'.format(source))
                 for t in temperature:
                     self.corpus_files.append(os.path.join(data_folder, os.path.join(str(t), 'corpus-{}.jsonl'.format(source))))
+        print(corpus_file)
+        if (corpus_file != None):
+            self.corpus_files = ['/home/aditisai/Source-Bias/debias/datasets/msmarco/corpus.jsonl']
         logger.info("Corpus Files {}".format(self.corpus_files))
         self.data_folder = data_folder
         self.candidate_lm = candidate_lm
@@ -67,9 +73,11 @@ class GenericDataLoader:
         return self.corpus, self.queries, self.qrels
 
     def load(self, split="test") -> Tuple[Dict[str, Dict[str, str]], Dict[str, str], Dict[str, Dict[str, int]]]:
-        
+        print("#####")
         self.qrels_file = os.path.join(self.qrels_folder, split + ".tsv")
+        print(self.qrels_file)
         for corpus_file in self.corpus_files:
+            print(corpus_file)
             self.check(fIn=corpus_file, ext="jsonl")
         self.check(fIn=self.query_file, ext="jsonl")
         self.check(fIn=self.qrels_file, ext="tsv")
@@ -108,7 +116,11 @@ class GenericDataLoader:
     def _load_corpus(self, corpus_file):
         
         num_lines = sum(1 for i in open(corpus_file, 'rb'))
-        generate_type = corpus_file.split('corpus-')[1].split('.jsonl')[0]
+        
+        try:
+            generate_type = corpus_file.split('corpus-')[1].split('.jsonl')[0]
+        except IndexError:  # This will catch issues when the split doesn't work as expected
+            generate_type = 'None'
         if generate_type == 'human':
             generate_type = 'human'
         else:

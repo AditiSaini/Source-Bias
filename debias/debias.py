@@ -12,12 +12,14 @@ We do not mine hard negatives or train triplets in this example.
 Running this script:
 python train_sbert.py
 '''
+import sys, os
+sys.path.append(os.path.dirname((os.path.dirname(os.path.abspath(__file__)))))
 
 from sentence_transformers import models, SentenceTransformer
 from beir import util, LoggingHandler
 from beir.datasets.data_loader import GenericDataLoader
-from beir.retrieval.train import TrainRetriever, Debiased_MultipleNegativesRankingLoss
-import pathlib, os
+from train import TrainRetriever, Debiased_MultipleNegativesRankingLoss
+import pathlib
 import logging
 import argparse
 import random
@@ -94,6 +96,10 @@ data_path = f"{dataset}"
 
 #### Provide the data_path where nfcorpus has been downloaded and unzipped
 # corpus, queries, qrels = GenericDataLoader(data_path).load(split="train")
+# print("####")
+# print(data_path)
+# print(LLM)
+# data_path = "/home/aditisai/Source-Bias/datasets/scifact/"
 human_corpus, queries, qrels = GenericDataLoader(data_folder=data_path, corpus_file="corpus.jsonl").load(split="train")
 llm_corpus, queries, qrels = GenericDataLoader(data_folder=data_path, corpus_file=f"corpus-{LLM}.jsonl").load(split="train")
 
