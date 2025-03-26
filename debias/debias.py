@@ -27,7 +27,7 @@ import copy
 import torch
 import numpy as np
 
-
+project_dir = pathlib.Path(__file__).parent.parent
 parser = argparse.ArgumentParser()
 parser.add_argument("--dataset",
                     type=str,
@@ -60,7 +60,8 @@ parser.add_argument("--model_name",
                     default="distilbert-base-uncased")
 parser.add_argument("--output_dir",
                     type=str,
-                    help="The output path",)
+                    help="The output path",
+                    default=project_dir)
 args = parser.parse_args()
 
 #### Just some code to print debug information to stdout
@@ -87,12 +88,16 @@ logging.info("The model_name is {}".format(model_name))
 logging.info("The output_dir is {}".format(output_dir))
 logging.info("The score function is {}".format(args.score_func))
 
+out_dir = os.path.join(project_dir, "datasets")
+target_folder = os.path.join(out_dir, dataset)
 
-# url = "https://public.ukp.informatik.tu-darmstadt.de/thakur/BEIR/datasets/{}.zip".format(dataset)
-# out_dir = os.path.join(pathlib.Path(__file__).parent.absolute(), "datasets")
-# data_path = util.download_and_unzip(url, out_dir)
+url = "https://public.ukp.informatik.tu-darmstadt.de/thakur/BEIR/datasets/{}.zip".format(dataset)
 
-data_path = f"{dataset}"
+# Download the zip file and unzip it if not present
+if not os.path.isdir(target_folder):
+    data_path = util.download_and_unzip(url, out_dir)
+else:
+    data_path = os.path.join(out_dir, dataset)
 
 #### Provide the data_path where nfcorpus has been downloaded and unzipped
 # corpus, queries, qrels = GenericDataLoader(data_path).load(split="train")
@@ -100,8 +105,8 @@ data_path = f"{dataset}"
 # print(data_path)
 # print(LLM)
 # data_path = "/home/aditisai/Source-Bias/datasets/scifact/"
-human_corpus, queries, qrels = GenericDataLoader(data_folder=data_path, corpus_file="corpus.jsonl").load(split="train")
-llm_corpus, queries, qrels = GenericDataLoader(data_folder=data_path, corpus_file=f"corpus-{LLM}.jsonl").load(split="train")
+human_corpus, queries, qrels = GenericDataLoader(data_folder=data_path).load(split="train")
+llm_corpus, queries, qrels = GenericDataLoader(data_folder=data_path, candidate_lm=[LLM], target=LLM + "_0.2").load(split="train")
 
 # directly finetune the whole sentence-transformer model
 if model_name == "distilbert-base-uncased":
