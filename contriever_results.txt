@@ -1,0 +1,37 @@
+(anlp) [aditisai@babel-15-32 Source-Bias]$ python evaluate/evaluate_contriever.py --test_dataset scifact --target human --candidate_lm
+ human llama-2-7b-chat
+The test dataset is scifact
+The test target model is human
+The candidate_lm is ['human', 'llama-2-7b-chat']
+The args is Namespace(test_dataset='scifact', target='human', candidate_lm=['human', 'llama-2-7b-chat'], temperature=[0.2], target_t=0.2, batch_size=512, score_func='dot')
+in human
+not in human
+corpus-llama-2-7b-chat.jsonl
+#####
+./datasets/scifact/qrels/test.tsv
+./datasets/scifact/corpus-human.jsonl
+./datasets/scifact/0.2/corpus-llama-2-7b-chat.jsonl
+Batches: 100%|██████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00,  2.53it/s]
+Batches: 100%|████████████████████████████████████████████████████████████████████████████████████████| 21/21 [00:10<00:00,  1.95it/s]
+Retriever evaluation for k in: [1, 3, 5, 10, 100, 1000]
+{'NDCG@1': 0.20333, 'NDCG@3': 0.40011, 'NDCG@5': 0.44262, 'NDCG@10': 0.47234, 'NDCG@100': 0.51271, 'NDCG@1000': 0.52497} {'MAP@1': 0.19278, 'MAP@3': 0.35009, 'MAP@5': 0.37467, 'MAP@10': 0.38892, 'MAP@100': 0.39801, 'MAP@1000': 0.39848} {'Recall@1': 0.19278, 'Recall@3': 0.52583, 'Recall@5': 0.62678, 'Recall@10': 0.712, 'Recall@100': 0.89267, 'Recall@1000': 0.99} {'P@1': 0.20333, 'P@3': 0.18444, 'P@5': 0.134, 'P@10': 0.079, 'P@100': 0.01013, 'P@1000': 0.00112}
+
+---***---
+
+(anlp) [aditisai@babel-15-32 Source-Bias]$ python evaluate/evaluate_contriever.py --test_dataset scifact --target llama-2-7b-chat --ca
+ndidate_lm human llama-2-7b-chat
+The test dataset is scifact
+The test target model is llama-2-7b-chat_0.2
+The candidate_lm is ['human', 'llama-2-7b-chat']
+The args is Namespace(test_dataset='scifact', target='llama-2-7b-chat', candidate_lm=['human', 'llama-2-7b-chat'], temperature=[0.2], target_t=0.2, batch_size=512, score_func='dot')
+in human
+not in human
+corpus-llama-2-7b-chat.jsonl
+#####
+./datasets/scifact/qrels/test.tsv
+./datasets/scifact/corpus-human.jsonl
+./datasets/scifact/0.2/corpus-llama-2-7b-chat.jsonl
+Batches: 100%|██████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00,  2.80it/s]
+Batches: 100%|████████████████████████████████████████████████████████████████████████████████████████| 21/21 [00:10<00:00,  1.94it/s]
+Retriever evaluation for k in: [1, 3, 5, 10, 100, 1000]
+{'NDCG@1': 0.33, 'NDCG@3': 0.46994, 'NDCG@5': 0.50342, 'NDCG@10': 0.5344, 'NDCG@100': 0.57002, 'NDCG@1000': 0.58175} {'MAP@1': 0.31622, 'MAP@3': 0.4306, 'MAP@5': 0.45122, 'MAP@10': 0.46535, 'MAP@100': 0.47311, 'MAP@1000': 0.47358} {'Recall@1': 0.31622, 'Recall@3': 0.55939, 'Recall@5': 0.63922, 'Recall@10': 0.73017, 'Recall@100': 0.89533, 'Recall@1000': 0.98667} {'P@1': 0.33, 'P@3': 0.2, 'P@5': 0.14, 'P@10': 0.08133, 'P@100': 0.01017, 'P@1000': 0.00112}

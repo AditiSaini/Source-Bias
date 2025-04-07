@@ -1,0 +1,146 @@
+(anlp) [aditisai@babel-15-32 Source-Bias]$ python evaluate/evaluate_ance.py --test_dataset scifact --target human --candidate_lm human llama-2-7b-chat
+2025-04-05 23:39:52 - The test dataset is scifact
+2025-04-05 23:39:52 - The test target model is human
+2025-04-05 23:39:52 - The candidate_lm is ['human', 'llama-2-7b-chat']
+2025-04-05 23:39:52 - The args is Namespace(test_dataset='scifact', target='human', candidate_lm=['human', 'llama-2-7b-chat'], temperature=[0.2], target_t=0.2, batch_size=128, score_func='dot')
+in human
+not in human
+corpus-llama-2-7b-chat.jsonl
+2025-04-05 23:39:52 - Corpus Files ['./datasets/scifact/corpus-human.jsonl', './datasets/scifact/0.2/corpus-llama-2-7b-chat.jsonl']
+#####
+./datasets/scifact/qrels/test.tsv
+./datasets/scifact/corpus-human.jsonl
+./datasets/scifact/0.2/corpus-llama-2-7b-chat.jsonl
+2025-04-05 23:39:52 - Loading Corpus...
+2025-04-05 23:39:53 - Loading Corpus...
+2025-04-05 23:39:53 - Loaded 10366 TEST Documents.
+2025-04-05 23:39:53 - Doc Example: {'text': 'Alterations of the architecture of cerebral white matter in the developing human brain can affect cortical development and result in functional disabilities. A line scan diffusion-weighted magnetic resonance imaging (MRI) sequence with diffusion tensor analysis was applied to measure the apparent diffusion coefficient, to calculate relative anisotropy, and to delineate three-dimensional fiber architecture in cerebral white matter in preterm (n = 17) and full-term infants (n = 7). To assess effects of prematurity on cerebral white matter development, early gestation preterm infants (n = 10) were studied a second time at term. In the central white matter the mean apparent diffusion coefficient at 28 wk was high, 1.8 microm2/ms, and decreased toward term to 1.2 microm2/ms. In the posterior limb of the internal capsule, the mean apparent diffusion coefficients at both times were similar (1.2 versus 1.1 microm2/ms). Relative anisotropy was higher the closer birth was to term with greater absolute values in the internal capsule than in the central white matter. Preterm infants at term showed higher mean diffusion coefficients in the central white matter (1.4 +/- 0.24 versus 1.15 +/- 0.09 microm2/ms, p = 0.016) and lower relative anisotropy in both areas compared with full-term infants (white matter, 10.9 +/- 0.6 versus 22.9 +/- 3.0%, p = 0.001; internal capsule, 24.0 +/- 4.44 versus 33.1 +/- 0.6% p = 0.006). Nonmyelinated fibers in the corpus callosum were visible by diffusion tensor MRI as early as 28 wk; full-term and preterm infants at term showed marked differences in white matter fiber organization. The data indicate that quantitative assessment of water diffusion by diffusion tensor MRI provides insight into microstructural development in cerebral white matter in living infants.', 'title': ''}
+2025-04-05 23:39:53 - Loading Queries...
+2025-04-05 23:39:53 - Loaded 300 TEST Queries.
+2025-04-05 23:39:53 - Query Example: 0-dimensional biomaterials show inductive properties.
+2025-04-05 23:39:53 - Use pytorch device_name: cuda
+2025-04-05 23:39:53 - Load pretrained SentenceTransformer: msmarco-roberta-base-ance-firstp
+2025-04-05 23:39:56 - Encoding Queries...
+Batches: 100%|██████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00<00:00,  5.45it/s]
+2025-04-05 23:39:57 - Sorting Corpus by document length (Longest first)...
+2025-04-05 23:39:57 - Encoding Corpus in batches... Warning: This might take a while!
+2025-04-05 23:39:57 - Scoring Function: Dot Product (dot)
+2025-04-05 23:39:57 - Encoding Batch 1/1...
+Batches: 100%|████████████████████████████████████████████████████████████████████████████████████████| 81/81 [00:46<00:00,  1.75it/s]
+2025-04-05 23:40:44 - Retriever evaluation for k in: [1, 3, 5, 10, 100, 1000]
+2025-04-05 23:40:44 - For evaluation, we ignore identical query and document ids (default), please explicitly set ``ignore_identical_ids=False`` to ignore this.
+2025-04-05 23:40:52 - 
+
+2025-04-05 23:40:52 - NDCG@1: 0.1533
+2025-04-05 23:40:52 - NDCG@3: 0.3006
+2025-04-05 23:40:52 - NDCG@5: 0.3272
+2025-04-05 23:40:52 - NDCG@10: 0.3542
+2025-04-05 23:40:52 - NDCG@100: 0.4013
+2025-04-05 23:40:52 - NDCG@1000: 0.4210
+2025-04-05 23:40:52 - 
+
+2025-04-05 23:40:52 - MAP@1: 0.1421
+2025-04-05 23:40:52 - MAP@3: 0.2616
+2025-04-05 23:40:52 - MAP@5: 0.2767
+2025-04-05 23:40:52 - MAP@10: 0.2889
+2025-04-05 23:40:52 - MAP@100: 0.2999
+2025-04-05 23:40:52 - MAP@1000: 0.3006
+2025-04-05 23:40:52 - 
+
+2025-04-05 23:40:52 - Recall@1: 0.1421
+2025-04-05 23:40:52 - Recall@3: 0.3940
+2025-04-05 23:40:52 - Recall@5: 0.4577
+2025-04-05 23:40:52 - Recall@10: 0.5363
+2025-04-05 23:40:52 - Recall@100: 0.7487
+2025-04-05 23:40:52 - Recall@1000: 0.9027
+2025-04-05 23:40:52 - 
+
+2025-04-05 23:40:52 - P@1: 0.1533
+2025-04-05 23:40:52 - P@3: 0.1389
+2025-04-05 23:40:52 - P@5: 0.0993
+2025-04-05 23:40:52 - P@10: 0.0600
+2025-04-05 23:40:52 - P@100: 0.0086
+2025-04-05 23:40:52 - P@1000: 0.0010
+2025-04-05 23:40:52 - 
+
+2025-04-05 23:40:52 - RATE@1: 0.4333
+2025-04-05 23:40:52 - RATE@3: 0.4789
+2025-04-05 23:40:52 - RATE@5: 0.4793
+2025-04-05 23:40:52 - RATE@10: 0.4843
+2025-04-05 23:40:52 - RATE@100: 0.4931
+2025-04-05 23:40:52 - RATE@1000: 0.4952
+
+---***---
+
+(anlp) [aditisai@babel-15-32 Source-Bias]$ python evaluate/evaluate_ance.py --test_dataset scifact --target llama-2-7b-chat --candidat
+e_lm human llama-2-7b-chat
+2025-04-06 00:12:30 - The test dataset is scifact
+2025-04-06 00:12:30 - The test target model is llama-2-7b-chat_0.2
+2025-04-06 00:12:30 - The candidate_lm is ['human', 'llama-2-7b-chat']
+2025-04-06 00:12:30 - The args is Namespace(test_dataset='scifact', target='llama-2-7b-chat', candidate_lm=['human', 'llama-2-7b-chat'], temperature=[0.2], target_t=0.2, batch_size=128, score_func='dot')
+in human
+not in human
+corpus-llama-2-7b-chat.jsonl
+2025-04-06 00:12:30 - Corpus Files ['./datasets/scifact/corpus-human.jsonl', './datasets/scifact/0.2/corpus-llama-2-7b-chat.jsonl']
+#####
+./datasets/scifact/qrels/test.tsv
+./datasets/scifact/corpus-human.jsonl
+./datasets/scifact/0.2/corpus-llama-2-7b-chat.jsonl
+2025-04-06 00:12:30 - Loading Corpus...
+2025-04-06 00:12:30 - Loading Corpus...
+2025-04-06 00:12:30 - Loaded 10366 TEST Documents.
+2025-04-06 00:12:30 - Doc Example: {'text': 'Alterations of the architecture of cerebral white matter in the developing human brain can affect cortical development and result in functional disabilities. A line scan diffusion-weighted magnetic resonance imaging (MRI) sequence with diffusion tensor analysis was applied to measure the apparent diffusion coefficient, to calculate relative anisotropy, and to delineate three-dimensional fiber architecture in cerebral white matter in preterm (n = 17) and full-term infants (n = 7). To assess effects of prematurity on cerebral white matter development, early gestation preterm infants (n = 10) were studied a second time at term. In the central white matter the mean apparent diffusion coefficient at 28 wk was high, 1.8 microm2/ms, and decreased toward term to 1.2 microm2/ms. In the posterior limb of the internal capsule, the mean apparent diffusion coefficients at both times were similar (1.2 versus 1.1 microm2/ms). Relative anisotropy was higher the closer birth was to term with greater absolute values in the internal capsule than in the central white matter. Preterm infants at term showed higher mean diffusion coefficients in the central white matter (1.4 +/- 0.24 versus 1.15 +/- 0.09 microm2/ms, p = 0.016) and lower relative anisotropy in both areas compared with full-term infants (white matter, 10.9 +/- 0.6 versus 22.9 +/- 3.0%, p = 0.001; internal capsule, 24.0 +/- 4.44 versus 33.1 +/- 0.6% p = 0.006). Nonmyelinated fibers in the corpus callosum were visible by diffusion tensor MRI as early as 28 wk; full-term and preterm infants at term showed marked differences in white matter fiber organization. The data indicate that quantitative assessment of water diffusion by diffusion tensor MRI provides insight into microstructural development in cerebral white matter in living infants.', 'title': ''}
+2025-04-06 00:12:30 - Loading Queries...
+2025-04-06 00:12:30 - Loaded 300 TEST Queries.
+2025-04-06 00:12:30 - Query Example: 0-dimensional biomaterials show inductive properties.
+2025-04-06 00:12:30 - Use pytorch device_name: cuda
+2025-04-06 00:12:30 - Load pretrained SentenceTransformer: msmarco-roberta-base-ance-firstp
+2025-04-06 00:12:32 - Encoding Queries...
+Batches: 100%|██████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00<00:00,  8.30it/s]
+2025-04-06 00:12:33 - Sorting Corpus by document length (Longest first)...
+2025-04-06 00:12:33 - Encoding Corpus in batches... Warning: This might take a while!
+2025-04-06 00:12:33 - Scoring Function: Dot Product (dot)
+2025-04-06 00:12:33 - Encoding Batch 1/1...
+Batches: 100%|████████████████████████████████████████████████████████████████████████████████████████| 81/81 [00:46<00:00,  1.75it/s]
+2025-04-06 00:13:20 - Retriever evaluation for k in: [1, 3, 5, 10, 100, 1000]
+2025-04-06 00:13:20 - For evaluation, we ignore identical query and document ids (default), please explicitly set ``ignore_identical_ids=False`` to ignore this.
+2025-04-06 00:13:29 - 
+
+2025-04-06 00:13:29 - NDCG@1: 0.2467
+2025-04-06 00:13:29 - NDCG@3: 0.3576
+2025-04-06 00:13:29 - NDCG@5: 0.3771
+2025-04-06 00:13:29 - NDCG@10: 0.4061
+2025-04-06 00:13:29 - NDCG@100: 0.4509
+2025-04-06 00:13:29 - NDCG@1000: 0.4670
+2025-04-06 00:13:29 - 
+
+2025-04-06 00:13:29 - MAP@1: 0.2331
+2025-04-06 00:13:29 - MAP@3: 0.3242
+2025-04-06 00:13:29 - MAP@5: 0.3364
+2025-04-06 00:13:29 - MAP@10: 0.3494
+2025-04-06 00:13:29 - MAP@100: 0.3585
+2025-04-06 00:13:29 - MAP@1000: 0.3591
+2025-04-06 00:13:29 - 
+
+2025-04-06 00:13:29 - Recall@1: 0.2331
+2025-04-06 00:13:29 - Recall@3: 0.4288
+2025-04-06 00:13:29 - Recall@5: 0.4787
+2025-04-06 00:13:29 - Recall@10: 0.5632
+2025-04-06 00:13:29 - Recall@100: 0.7759
+2025-04-06 00:13:29 - Recall@1000: 0.9043
+2025-04-06 00:13:29 - 
+
+2025-04-06 00:13:29 - P@1: 0.2467
+2025-04-06 00:13:29 - P@3: 0.1567
+2025-04-06 00:13:29 - P@5: 0.1053
+2025-04-06 00:13:29 - P@10: 0.0633
+2025-04-06 00:13:29 - P@100: 0.0088
+2025-04-06 00:13:29 - P@1000: 0.0010
+2025-04-06 00:13:29 - 
+
+2025-04-06 00:13:29 - RATE@1: 0.5667
+2025-04-06 00:13:29 - RATE@3: 0.5211
+2025-04-06 00:13:29 - RATE@5: 0.5207
+2025-04-06 00:13:29 - RATE@10: 0.5157
+2025-04-06 00:13:29 - RATE@100: 0.5069
+2025-04-06 00:13:29 - RATE@1000: 0.5048
