@@ -16,8 +16,8 @@ import sys, os
 sys.path.append(os.path.dirname((os.path.dirname(os.path.abspath(__file__)))))
 
 from sentence_transformers import models, SentenceTransformer
-from beir import util, LoggingHandler
-from beir.datasets.data_loader import GenericDataLoader
+from beir_v1 import util, LoggingHandler
+from beir_v1.datasets.data_loader import GenericDataLoader
 from train import TrainRetriever, Debiased_MultipleNegativesRankingLoss
 import pathlib
 import logging

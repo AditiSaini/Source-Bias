@@ -2,13 +2,15 @@ import sys, os
 sys.path.append(os.path.dirname((os.path.dirname(os.path.abspath(__file__)))))
 
 from beir import util, LoggingHandler
-from beir.datasets.data_loader import GenericDataLoader
+from beir_v1.datasets.data_loader import GenericDataLoader
 from beir.retrieval.evaluation import EvaluateRetrieval
-from beir.retrieval.search.lexical import BM25 as BM25
+from beir_v1.retrieval.search.lexical import BM25 as BM25
 
 import pathlib, os, json
 import logging
 import argparse
+import nltk
+nltk.download('punkt_tab')
 
 parser = argparse.ArgumentParser()
 parser.add_argument(

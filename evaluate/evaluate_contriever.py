@@ -1,10 +1,10 @@
 import sys, os
 sys.path.append(os.path.dirname((os.path.dirname(os.path.abspath(__file__)))))
 # from beir import util, LoggingHandler
-from beir.retrieval import models
-from beir.datasets.data_loader import GenericDataLoader
-from beir.retrieval.evaluation import EvaluateRetrieval
-from beir.retrieval.search.dense import DenseRetrievalExactSearch as DRES
+from beir_v1.retrieval import models
+from beir_v1.datasets.data_loader import GenericDataLoader
+from beir_v1.retrieval.evaluation import EvaluateRetrieval
+from beir_v1.retrieval.search.dense import DenseRetrievalExactSearch as DRES
 import logging
 import argparse
 

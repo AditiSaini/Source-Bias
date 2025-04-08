@@ -13,7 +13,7 @@ import time
 import random
 import sys, os
 sys.path.append(os.path.dirname((os.path.dirname(os.path.abspath(__file__)))))
-from beir import util
+from beir_v1 import util
 
 logger = logging.getLogger(__name__)
 
